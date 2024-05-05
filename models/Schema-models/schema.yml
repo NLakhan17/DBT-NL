@@ -1,0 +1,69 @@
+
+version: 2
+
+models:
+  - name: date_dimension
+    columns:
+      - name: date_key
+        description: "Primary key for the date dimension"
+        tests:
+          - unique
+      - name: date
+        description: "Date attribute"
+      
+
+  - name: city_dimension
+    columns:
+      - name: city_key
+        description: "Primary key for the city dimension"
+        tests:
+          - unique
+      - name: city
+        description: "City attribute"
+      
+
+  - name: weather_fact
+    columns:
+      - name: date_key
+        description: "Foreign key referencing date_dimension.date_key"
+        tests:
+          - not_null
+      - name: city_key
+        description: "Foreign key referencing city_dimension.city_key"
+        tests:
+          - not_null
+      - name: temperature_2m
+        description: "Temperature at 2 meters"
+      - name: relative_humidity_2m
+        description: "Relative humidity at 2 meters"
+      
+    relationships:
+      - name: date_dimension
+        field: date_key
+        type: many_to_one
+      - name: city_dimension
+        field: city_key
+        type: many_to_one
+
+  - name: air_quality_fact
+    columns:
+      - name: date_key
+        description: "Foreign key referencing date_dimension.date_key"
+        tests:
+          - not_null
+      - name: city_key
+        description: "Foreign key referencing city_dimension.city_key"
+        tests:
+          - not_null
+      - name: pm10
+        description: "PM10 level"
+      - name: pm2_5
+        description: "PM2.5 level"
+      
+    relationships:
+      - name: date_dimension
+        field: date_key
+        type: many_to_one
+      - name: city_dimension
+        field: city_key
+        type: many_to_one
