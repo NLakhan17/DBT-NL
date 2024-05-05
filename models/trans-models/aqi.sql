@@ -210,7 +210,7 @@ WITH source_data AS (
         ELSE 'Unhealthy'
       END AS aqi_threshold
     FROM
-      `dm2-hnbay.dbt_nlakhan.air_quality`
+      {{ref("air_quality")}}
     GROUP BY
       date, city
     ORDER BY

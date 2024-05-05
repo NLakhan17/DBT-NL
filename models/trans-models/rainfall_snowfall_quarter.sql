@@ -8,9 +8,9 @@ WITH weather_analysis AS (
     d.quarter,
     d.month_name
   FROM
-    `dm2-hnbay.dbt_nlakhan.weather_t` w
+    {{ref("weather_t")}} w
   INNER JOIN
-    `dm2-hnbay.dbt_nlakhan.date_details` d
+    {{ref("date_details")}} d
   ON
     w.date = d.date
 )

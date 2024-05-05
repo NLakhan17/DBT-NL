@@ -13,7 +13,7 @@ WITH source_data AS (
     FROM
         `dm2-hnbay.DM_2.weather-data` w
     LEFT JOIN
-        `dm2-hnbay.dbt_nlakhan.aqi` a
+        {{ref("aqi")}} a
     ON
         w.date = a.date AND w.city = a.city
     GROUP BY
