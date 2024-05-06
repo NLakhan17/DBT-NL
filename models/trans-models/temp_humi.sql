@@ -9,7 +9,7 @@ WITH weather_factors AS (
     wind_speed_10m,
     sunshine_duration
   FROM
-    {{ref("weather_t")}}
+    {{ref("weather_t")}})
 
 -- Calculate correlations between temperature, humidity, and weather factors
 SELECT
